@@ -1,0 +1,88 @@
+# Projekt: SWCNN - Image Restauration
+-- selbstständige (hobby) erarbeitung eines githbu repos + paper das für den Praxiseinsatz nicht benutzt werden konnte, vollständig von mir refactored und weiterentwickelt:
+
+## README.md (excerpt)
+This model is based on a paper by Chunwei Tian, Menghua Zheng, Tiancai Jiao, Wangmeng Zuo, Yanning Zhang, Chia-Wen Lin which can be found here.
+
+This is a fork of the reference implementation of that paper aimed at improving several aspects:
+
+I. Major Improvements and New Features:
+
+Refactoring and Code Structure:
+
+The codebase has been significantly refactored for improved readability, maintainability, and modularity. This includes:
+Moving several modules into separate files.
+Separating the config logic.
+Creating configs for training and tensorboard.
+Further reference: 6cc09d0
+Enhanced Watermark Handling:
+
+Watermark Manager Class: Introduced a WatermarkManager class to centralize watermark loading, caching, and application. This improves code organization and efficiency.
+Artifacts Configuration: Added support for configuring and applying artifacts around watermarks, simulating real-world imperfections.
+New Watermark Application: Implemented add_watermark_noise_generic for flexible watermark application with various options like scaling, positioning, and alpha blending. Replaced old, less flexible methods.
+Watermark Variation: Added more watermark options and control over the watermark application process.
+Deterministic Watermarks for Validation: Added the ability to generate deterministic watermarks for consistent validation. (8e0c4ca)
+Watermark Map Caching: Watermark maps are now resized and cached for faster usage. (790c4ca)
+Watermark Opacity: The --alpha parameter now controls the opacity of the watermark.
+Further reference: 8e0c4ca, d8f3183, b8db4c3, 9b0f729, 7cd7477, f1339af, 1a15d39, c93778d, 0305673
+Training Process Enhancements:
+
+TensorBoard Integration: Implemented comprehensive TensorBoard logging for monitoring training progress. Metrics logged include:
+Loss components (reconstruction and perceptual, if enabled)
+Learning rate
+PSNR
+Histograms of model parameters and gradients (optional)
+Images at different stages of processing
+Configurable Logging: Added options to control the granularity of TensorBoard logging.
+Mixed Precision Training: Introduced mixed precision training using GradScaler to potentially speed up training and reduce memory usage.
+Resumable Training: Added option to resume training from a checkpoint. (2ae85f5)
+Learning Rate Scheduler: Implemented a learning rate scheduler for dynamic adjustment during training.
+Further reference: 83c5024, 6906d07, 1c053a4, e904da6
+Performance Optimizations:
+
+Optimized Data Loading: Improved data loading efficiency by using pin_memory=True and adjusting num_workers in the DataLoader.
+Reduced Redundancy: Removed unnecessary computations and memory allocations.
+Refactored Watermark Application: Optimized the watermark application process for better performance.
+GPU Usage: Improved GPU utilization.
+CUDA: Implemented CUDA-accelerated color space conversions. (dfbca74)
+Performance Benchmarks: The repository now includes benchmarks for measuring the speedup achieved with CUDA and other optimizations.
+Patching: Implemented patching for inference, similar to training. (5af24a4)
+Further reference: 887da9d, 98be395, 787870f, dfbca74, 5af24a4
+II. Bug Fixes:
+
+Image Distortion: Fixed an issue causing image distortion during resizing by correcting the order of width and height parameters. (65eae1a)
+Model Saving: Resolved a problem where models were not saving correctly by adjusting the saving logic.
+Watermark Application: Fixed various bugs related to watermark positioning and application.
+Alpha Blending: Corrected the alpha blending implementation for more accurate watermark application.
+Path Issues: Addressed incorrect paths for loading watermarks and saving models.
+Typos: Fixed several typos.
+Parameter Naming: Standardized parameter names for consistency.
+Variable Deprecation: Removed redundant usage of Variable in favor of torch.no_grad(). (7f1e460)
+volatile Replacement: Replaced deprecated volatile=True with torch.no_grad(). (d2ad14a)
+III. Documentation and Usability:
+
+README Update: Updated the README to reflect the changes and provide clearer instructions.
+Docstrings: Added detailed docstrings to functions and classes for better code understanding.
+Type Hinting: Added type hints throughout the codebase to improve code clarity and maintainability.
+Helper Functions: Introduced helper functions for common tasks like configuration loading and metric calculations.
+Inference Script: Added a PowerShell script (inference_folder.ps1) for running inference on a folder of images.
+Output Directory Structure: Established a new output directory structure for better organization of results.
+Distribution Metrics: Implemented DistributionMetrics class for computing and visualizing distribution similarity metrics.
+IV. Removed Functionality:
+
+DRDNet Model: Removed the DRDNet model as it was not being used in the core training pipeline.
+Unused Code: Eliminated unused code, variables, and imports to streamline the codebase.
+utils.py Removal: split up into multiple files, config.py and data_augmentation.py moved into their respective folders. (8d1f777)
+basicblock.py and batchrenorm folder: Removed unused code related to external libraries. (8d1f777)
+model_common/filters.py Removal: Removed unused filters. (8d1f777)
+addWatermark.py Removal: Functionality merged into utils/watermark.py. (8d1f777)
+flops.py Removal: Removed the code for calculating FLOPs as it was not being used. (8d1f777)
+model_common folder: Removed. (8d1f777)
+train_noisy_L.py Removal: Removed the script as it's not used. (8d1f777)
+V. Other Changes:
+
+Configuration: Moved configuration parameters to a YAML file (configs/config.yaml) for easier management.
+Test Data: Added a dedicated folder for paired test data (data/test) and a text file indicating where to place test images.
+Gitignore: Updated .gitignore to exclude unnecessary files and directories.
+.vsconfig: Added .vsconfig for development environment.
+Requirements: Added a requirements.txt file for easy dependency management.

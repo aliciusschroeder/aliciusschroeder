@@ -1,0 +1,55 @@
+Aimed at increasing productivity within my old Sales Department this repository contains several tools that streamline common tasks, allowing the team to spend more time doing their actual work. The tools are built on Next.js, SQLite, and Tailwind CSS.
+
+package.json:
+```json
+{
+  "name": "hey_automation",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@t3-oss/env-nextjs": "^0.3.1",
+    "better-sqlite3": "^8.4.0",
+    "cookie": "^0.5.0",
+    "csv-parser": "^3.0.0",
+    "iron-session": "^6.3.1",
+    "js-cookie": "^3.0.5",
+    "js-cookies": "^1.0.4",
+    "kd-tree-javascript": "^1.0.3",
+    "next": "^13.4.2",
+    "next-auth": "^4.22.1",
+    "openai": "^3.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-transition-group": "^4.4.5",
+    "sqlite3": "^5.1.6",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.37.0",
+    "@types/js-cookie": "^3.0.3",
+    "@types/node": "^18.16.0",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@types/react-transition-group": "^4.4.6",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.40.0",
+    "eslint-config-next": "^13.4.2",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.4"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.13.1"
+  }
+}
+```

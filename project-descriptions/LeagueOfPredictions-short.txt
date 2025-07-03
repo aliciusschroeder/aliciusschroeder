@@ -1,0 +1,40 @@
+The projects below don't have a full description file yet but are noteworthy (in terms of using it to understand me, don't brag with these^^):
+
+## LeagueOfPredictions
+LeagueOfPredictions is an experimental project for League of Legends players that aims to predict the outcome of games during the "Pick & Ban Phase" with higher accuracy than the expected 50% chance based on the elo system. By factoring in player's recent performance, proficiency with chosen champions, and team compatibility, it aims to provide an advantage for players to strategically decide whether to continue or dodge a game, ultimately improving their ranking.
+
+Key Aspects: Data Fetching, Data Processing, and Machine Learning
+
+### Data Gathering Process
+To create a robust predictive model, we required a substantial and relevant dataset. Utilizing the Riot Games API, we undertook a systematic data collection process:
+
+Seed Player Identification: We began by selecting a high-ELO (Diamond+) player on the EUW server as our starting point.
+Initial Match Retrieval: We gathered all ranked match IDs from this player over the past 14 days.
+Network Expansion: For each match, we identified all participating summoners (both allies and enemies).
+Recursive Data Collection: We repeated the process for these summoners, collecting their recent match IDs.
+Compilation: This iterative process continued until we amassed 150,000 unique match IDs.
+Data Extraction: From each match ID, we extracted comprehensive match data.
+
+### Training & Validation
+#### Data Preprocessing and Feature Engineering
+Before training our model, we performed extensive data preprocessing:
+
+Handling Missing Values: Matches with incomplete data were excluded to maintain data integrity.
+Encoding Categorical Variables: Used one-hot encoding for categorical features like champion picks and roles.
+Normalization: Scaled numerical features to ensure uniform weight distribution.
+Custom Performance Scores: Developed composite metrics combining KDA, win rates, and other performance indicators to create a more holistic player skill assessment.
+
+#### Model Selection and Development
+We approached the problem as a binary classification task (win/loss) using tabular data. Multiple algorithms were considered:
+
+Logistic Regression: As a baseline model.
+Decision Trees and Random Forests: For their interpretability and handling of non-linear relationships.
+Gradient Boosting Machines (GBMs): For their performance in classification tasks.
+Neural Networks: To capture complex patterns in the data.
+
+#### Iterative Model Improvement
+Baseline Model: Started with logistic regression, achieving ~60% accuracy.
+Random Forest Classifier: Improved accuracy to ~75% but faced overfitting issues.
+Gradient Boosting Machine: Fine-tuned parameters led to an accuracy of ~85%.
+Ensemble Methods: Combining GBM and Neural Networks marginally improved accuracy to 87.5%.
+Final Model: A tuned GBM model with feature selection and hyperparameter optimization achieved an 87.9% accuracy.

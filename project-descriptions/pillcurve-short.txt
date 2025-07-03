@@ -1,0 +1,65 @@
+The projects below don't have a full description file yet but are noteworthy (in terms of using it to understand me, don't brag with these^^):
+
+## PillCurve
+
+TechStack:   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
+    "@mui/system": "^6.1.0",
+    "@t3-oss/env-nextjs": "^0.7.3",
+    "@tanstack/react-query": "^4.36.1",
+    "moment": "^2.30.1",
+    "next": "^14.2.12",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.12.0",
+    "react-transition-group": "^4.4.5",
+    "recharts": "^2.12.7",
+    "superjson": "^1.13.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.56.12",
+    "@types/node": "^18.19.50",
+    "@types/react": "^18.3.7",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-transition-group": "^4.4.11",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.12",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.12",
+    "typescript": "^5.6.2"
+  },
+
+An app to model and visualize medication dosing and effects, featuring customizable pharmacokinetic parameters, multiple dose management, and dynamic concentration graphs. Built with Next.js and Tailwind CSS for a responsive experience.
+
+Components
+ChartContainer.tsx: Wraps the chart component with styling.
+ChartCore.tsx: Renders the main chart using Recharts.
+ChartDisplay.tsx: Prepares data and passes it to ChartCore.
+DoseField.tsx: Input field for individual dose amounts.
+DoseInput.tsx: Manages dose and time inputs.
+DosingForm.tsx: Main form integrating all input components.
+Footer.tsx: Footer component displayed on all pages.
+PresetSelector.tsx: Allows selection of predefined substances or custom input.
+StartingTimeField.tsx: Input field for the starting time using a time picker.
+TimeField.tsx: Input field for specifying time after the starting time.
+Hooks
+useConcentrationData.ts: Calculates concentration data based on input.
+useDosingForm.ts: Manages form state and dosing calculations.
+useFormState.ts: Manages form data state.
+usePresetSelection.ts: Handles logic for preset selection and custom presets.
+useStartingTimeInput.ts: Manages starting time input and conversion.
+useUrlState.ts: Synchronizes form state with URL parameters for sharing.
+Utilities
+calculateConcentration.ts: Calculates drug concentration over time.
+doseUtils.ts: Utilities for managing doses.
+formatters.ts: Formats chart labels and tooltips.
+urlStateUtils.ts: Encodes and decodes URL state.
